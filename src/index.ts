@@ -42,13 +42,9 @@ const placeOrder = (pizzaName: string) => {
 };
 
 const completeOrder = (id: number) => {
-  const index = orderQueue.findIndex((item) => item.id === id);
-  if (index === -1) {
-    return `Order not found for id: ${id}`;
-  }
-  const order = orderQueue[index];
+  const order = orderQueue.find((o) => o.id === id);
   if (!order) {
-    console.error(`Order id: ${id}, is not found`);
+    console.error(`${id} was not found in the orderQueue`);
     return;
   }
   order.status = "completed";
