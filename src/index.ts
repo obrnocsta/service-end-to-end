@@ -33,8 +33,8 @@ const addNewPizza = (pizza: Omit<Pizza, "id">): Pizza => {
 };
 
 const placeOrder = (pizzaName: string): Order | undefined => {
-  const pizza = menu.find((item) =>
-    item.name.toLowerCase().includes(pizzaName.toLowerCase()),
+  const pizza = menu.find(
+    (item) => item.name.toLowerCase() === pizzaName.toLowerCase(),
   );
   if (!pizza) {
     console.error(`${pizzaName} does not exists in the menu`);
