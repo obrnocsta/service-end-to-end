@@ -10,19 +10,26 @@ type Order = {
   status: "ordered" | "completed";
 };
 
+let cashInRegister = 100;
+let nextOrderId = 0;
+let nextPizzaId = 0;
+
 const menu: Pizza[] = [
-  { id: 1, name: "Margherita", price: 8 },
-  { id: 2, name: "Pepperoni", price: 10 },
-  { id: 3, name: "Hawaiian", price: 10 },
-  { id: 4, name: "Veggie", price: 9 },
+  { id: ++nextPizzaId, name: "Margherita", price: 8 },
+  { id: ++nextPizzaId, name: "Pepperoni", price: 10 },
+  { id: ++nextPizzaId, name: "Hawaiian", price: 10 },
+  { id: ++nextPizzaId, name: "Veggie", price: 9 },
 ];
 
-let cashInRegister = 100;
-let nextId = 0;
 const orderQueue: Order[] = [];
 
-const addNewPizza = (pizza: Pizza): void => {
-  menu.push(pizza);
+const addNewPizza = (pizza: Omit<Pizza, "id">): Pizza => {
+  const newPizza = {
+    id: ++nextPizzaId,
+    ...pizza,
+  };
+  menu.push(newPizza);
+  return newPizza;
 };
 
 const placeOrder = (pizzaName: string): Order | undefined => {
@@ -35,7 +42,7 @@ const placeOrder = (pizzaName: string): Order | undefined => {
   }
   cashInRegister += pizza.price;
   const newOrder: Order = {
-    id: ++nextId,
+    id: ++nextOrderId,
     pizza,
     status: "ordered",
   };
@@ -69,7 +76,7 @@ const getPizzaDetail = (identifier: string | number): Pizza | undefined => {
 
 // use case
 
-addNewPizza({ id: 5, name: "Banana", price: 9 });
+addNewPizza({ name: "Banana", price: 9 });
 placeOrder("Banana");
 completeOrder(1);
 
@@ -77,7 +84,7 @@ console.log("Menu:", menu);
 console.log("\nOrders:", orderQueue);
 console.log("\nRegister: $", cashInRegister);
 
-console.log("\nPizza Detail:", getPizzaDetail(7));
+console.log("\nPizza Detail:", getPizzaDetail(2));
 
 // info
 // When shoul use 'any'?
