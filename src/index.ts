@@ -33,12 +33,13 @@ const placeOrder = (pizzaName: string) => {
     return;
   }
   cashInRegister += pizza.price;
-  const order = orderQueue.push({
+  const newOrder: Order = {
     id: ++nextId,
     pizza,
     status: "ordered",
-  });
-  return order;
+  };
+  orderQueue.push(newOrder);
+  return newOrder;
 };
 
 const completeOrder = (id: number) => {
@@ -58,5 +59,5 @@ placeOrder("Banana");
 completeOrder(1);
 
 console.log("Menu:", menu);
-console.log("Orders:", orderQueue);
-console.log("Register: $", cashInRegister);
+console.log("\nOrders:", orderQueue);
+console.log("\nRegister: $", cashInRegister);
