@@ -21,11 +21,11 @@ let cashInRegister = 100;
 let nextId = 0;
 const orderQueue: Order[] = [];
 
-const addNewPizza = (pizza: Pizza) => {
+const addNewPizza = (pizza: Pizza): void => {
   menu.push(pizza);
 };
 
-const placeOrder = (pizzaName: string) => {
+const placeOrder = (pizzaName: string): Order | undefined => {
   const pizza = menu.find((item) =>
     item.name.toLowerCase().includes(pizzaName.toLowerCase()),
   );
@@ -43,7 +43,7 @@ const placeOrder = (pizzaName: string) => {
   return newOrder;
 };
 
-const completeOrder = (id: number) => {
+const completeOrder = (id: number): Order | undefined => {
   const order = orderQueue.find((o) => o.id === id);
   if (!order) {
     console.error(`${id} was not found in the orderQueue`);
@@ -53,7 +53,7 @@ const completeOrder = (id: number) => {
   return order;
 };
 
-const getPizzaDetail = (identifier: string | number) => {
+const getPizzaDetail = (identifier: string | number): Pizza | undefined => {
   if (typeof identifier === "string") {
     return menu.find(
       (pizza) => pizza.name.toLowerCase() === identifier.toLowerCase(),
