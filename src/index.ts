@@ -37,7 +37,7 @@ const placeOrder = (pizzaName: string): Order | undefined => {
     item.name.toLowerCase().includes(pizzaName.toLowerCase()),
   );
   if (!pizza) {
-    console.error(`${pizza} does not exists in the menu`);
+    console.error(`${pizzaName} does not exists in the menu`);
     return;
   }
   cashInRegister += pizza.price;
