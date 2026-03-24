@@ -83,12 +83,12 @@ function addToArray<T>(array: T[], item: T): T[] {
 
 // example usage:
 addToArray<Pizza>(menu, {
-  id: nextPizzaId++,
+  id: ++nextPizzaId,
   name: "Chicken Bacon Ranch",
   price: 12,
 });
 addToArray<Order>(orderQueue, {
-  id: nextOrderId++,
+  id: ++nextOrderId,
   pizza: menu[2],
   status: "completed",
 });
