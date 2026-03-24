@@ -74,17 +74,39 @@ const getPizzaDetail = (identifier: string | number): Pizza | undefined => {
   }
 };
 
+// Example of using 'Generic' types
+
+function addToArray<T>(array: T[], item: T): T[] {
+  array.push(item);
+  return array;
+}
+
+// example usage:
+addToArray<Pizza>(menu, {
+  id: nextPizzaId++,
+  name: "Chicken Bacon Ranch",
+  price: 12,
+});
+addToArray<Order>(orderQueue, {
+  id: nextOrderId++,
+  pizza: menu[2],
+  status: "completed",
+});
+
+console.log(menu);
+console.log(orderQueue);
+
 // use case
 
-addNewPizza({ name: "Banana", price: 9 });
-placeOrder("Banana");
-completeOrder(1);
+// addNewPizza({ name: "Banana", price: 9 });
+// placeOrder("Banana");
+// completeOrder(1);
 
-console.log("Menu:", menu);
-console.log("\nOrders:", orderQueue);
-console.log("\nRegister: $", cashInRegister);
+// console.log("Menu:", menu);
+// console.log("\nOrders:", orderQueue);
+// console.log("\nRegister: $", cashInRegister);
 
-console.log("\nPizza Detail:", getPizzaDetail(2));
+// console.log("\nPizza Detail:", getPizzaDetail(2));
 
 // info
 // When shoul use 'any'?
