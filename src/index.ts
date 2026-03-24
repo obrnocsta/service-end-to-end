@@ -3,6 +3,12 @@ type Pizza = {
   price: number;
 };
 
+type Order = {
+  id: number;
+  pizza: Pizza;
+  status: "ordered" | "completed";
+};
+
 const menu = [
   { name: "Margherita", price: 8 },
   { name: "Pepperoni", price: 10 },
@@ -12,7 +18,7 @@ const menu = [
 
 let cashInRegister = 100;
 let nextId = 0;
-const orderQueue = [];
+const orderQueue: Order[] = [];
 
 const addNewPizza = (pizza: Pizza) => {
   menu.push(pizza);
@@ -41,6 +47,10 @@ const completeOrder = (id: number) => {
     return `Order not found for id: ${id}`;
   }
   const order = orderQueue[index];
+  if (!order) {
+    console.error(`Order id: ${id}, is not found`);
+    return;
+  }
   order.status = "completed";
   return order;
 };
