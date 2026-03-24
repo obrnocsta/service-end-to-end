@@ -78,3 +78,8 @@ console.log("\nOrders:", orderQueue);
 console.log("\nRegister: $", cashInRegister);
 
 console.log("\nPizza Detail:", getPizzaDetail(7));
+
+// info
+// When shoul use 'any'?
+// In short: DON'T
+// One legitimate use-case: you're in the process of transitioning a code base from JavaScript to TypeScript ad don't immediately have the time to write all your complex types, so you just need a way to 'get around TypeScript' for now.
