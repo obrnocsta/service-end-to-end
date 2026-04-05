@@ -87,9 +87,16 @@ addToArray<Pizza>(menu, {
   name: "Chicken Bacon Ranch",
   price: 12,
 });
+
+const pizza = menu.find((pizza) => pizza.name === "Pepperoni");
+
+if (!pizza) {
+  throw new Error("Pizza not found");
+}
+
 addToArray<Order>(orderQueue, {
   id: ++nextOrderId,
-  pizza: menu[2],
+  pizza,
   status: "completed",
 });
 
